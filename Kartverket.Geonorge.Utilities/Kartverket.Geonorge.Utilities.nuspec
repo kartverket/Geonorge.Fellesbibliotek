@@ -15,7 +15,7 @@
     </releaseNotes>
   </metadata>
   <files>
-    <file src="bin\Release\**" />
+    <file src="bin\Release\**" target="lib\net45"/>
     <file src="**\*.cs" exclude="**\obj\**\*.*" target="src" />
   </files>
 </package>
