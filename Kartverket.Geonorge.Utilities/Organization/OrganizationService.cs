@@ -10,6 +10,8 @@ namespace Kartverket.Geonorge.Utilities.Organization
         private readonly string _registryUrl;
         private readonly HttpClient _httpClient;
 
+        public OrganizationService(string registryUrl) : this(registryUrl, new HttpClient()) { }
+
         public OrganizationService(string registryUrl, HttpClient httpClient)
         {
             _registryUrl = registryUrl;
