@@ -24,10 +24,10 @@ namespace Kartverket.Geonorge.Utilities.Organization
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = await _httpClient.GetAsync("api/organisasjon/navn/" + name);
+            HttpResponseMessage response = await _httpClient.GetAsync("api/organisasjon/navn/" + name).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
-                Organization organization = await response.Content.ReadAsAsync<Organization>();
+                Organization organization = await response.Content.ReadAsAsync<Organization>().ConfigureAwait(false);
                 return organization;
             }
             return null;
