@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GeoNetworkUtil.cs" />
+    <Compile Include="Organization\HttpClientFactory.cs" />
+    <Compile Include="Organization\IHttpClientFactory.cs" />
     <Compile Include="Organization\Organization.cs" />
     <Compile Include="Organization\OrganizationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

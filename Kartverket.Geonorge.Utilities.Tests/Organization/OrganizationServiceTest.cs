@@ -9,15 +9,16 @@ using NUnit.Framework;
 
 namespace Kartverket.Geonorge.Utilities.Tests.Organization
 {
-    class OrganizationServiceTest
+    internal class OrganizationServiceTest
     {
         [Test]
         public void ShouldReturnOrganizationWhenFoundByName()
         {
             const string registryUrl = "http://dummy";
-            const string content = @"{Number:""123456789"", Name:""Kartverket"", LogoUrl:""http://example.com/logo.png""}";
+            const string content =
+                @"{Number:""123456789"", Name:""Kartverket"", LogoUrl:""http://example.com/logo.png""}";
 
-            var httpClient = CreateHttpClient(HttpStatusCode.OK, content);
+            var httpClient = CreateHttpClientFactory(HttpStatusCode.OK, content);
 
             var service = new OrganizationService(registryUrl, httpClient);
             Task<Utilities.Organization.Organization> task = service.GetOrganizationByName("Kartverket");
@@ -35,7 +36,7 @@ namespace Kartverket.Geonorge.Utilities.Tests.Organization
             const string registryUrl = "http://dummy";
             const string content = "";
 
-            var httpClient = CreateHttpClient(HttpStatusCode.NotFound, content);
+            var httpClient = CreateHttpClientFactory(HttpStatusCode.NotFound, content);
 
             var service = new OrganizationService(registryUrl, httpClient);
             Task<Utilities.Organization.Organization> task = service.GetOrganizationByName("Kartverket");
@@ -44,7 +45,7 @@ namespace Kartverket.Geonorge.Utilities.Tests.Organization
             organization.Should().BeNull();
         }
 
-        private HttpClient CreateHttpClient(HttpStatusCode httpStatusCode, string content)
+        private IHttpClientFactory CreateHttpClientFactory(HttpStatusCode httpStatusCode, string content)
         {
             var response = new HttpResponseMessage(httpStatusCode);
             response.Content = new StringContent(content, Encoding.UTF8, "application/json");
@@ -53,9 +54,26 @@ namespace Kartverket.Geonorge.Utilities.Tests.Organization
                 Response = response,
                 InnerHandler = new HttpClientHandler()
             });
-            return httpClient;
+
+            return new FakeHttpClientFactory(httpClient);
         }
     }
+
+    public class FakeHttpClientFactory : IHttpClientFactory
+    {
+        private readonly HttpClient _client;
+
+        public FakeHttpClientFactory(HttpClient client)
+        {
+            _client = client;
+        }
+
+        public HttpClient GetHttpClient()
+        {
+            return _client;
+        }
+    }
+
 
     public class FakeHttpHandler : DelegatingHandler
     {

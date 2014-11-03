@@ -8,23 +8,23 @@ namespace Kartverket.Geonorge.Utilities.Organization
     public class OrganizationService : IOrganizationService
     {
         private readonly string _registryUrl;
-        private readonly HttpClient _httpClient;
+        private readonly IHttpClientFactory _factory;
 
-        public OrganizationService(string registryUrl) : this(registryUrl, new HttpClient()) { }
-
-        public OrganizationService(string registryUrl, HttpClient httpClient)
+        public OrganizationService(string registryUrl, IHttpClientFactory factory)
         {
             _registryUrl = registryUrl;
-            _httpClient = httpClient;
+            _factory = factory;
         }
 
         public async Task<Organization> GetOrganizationByName(string name)
         {
-            _httpClient.BaseAddress = new Uri(_registryUrl);
-            _httpClient.DefaultRequestHeaders.Accept.Clear();
-            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpClient client = _factory.GetHttpClient();
 
-            HttpResponseMessage response = await _httpClient.GetAsync("api/organisasjon/navn/" + name).ConfigureAwait(false);
+            client.BaseAddress = new Uri(_registryUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = await client.GetAsync("api/organisasjon/navn/" + name).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
                 Organization organization = await response.Content.ReadAsAsync<Organization>().ConfigureAwait(false);
