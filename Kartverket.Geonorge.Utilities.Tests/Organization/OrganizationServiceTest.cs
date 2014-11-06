@@ -11,6 +11,12 @@ namespace Kartverket.Geonorge.Utilities.Tests.Organization
 {
     internal class OrganizationServiceTest
     {
+        public OrganizationServiceTest()
+        {
+            log4net.Config.BasicConfigurator.Configure();
+
+        }
+
         [Test]
         public void ShouldReturnOrganizationWhenFoundByName()
         {

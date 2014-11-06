@@ -21,8 +21,7 @@ namespace Kartverket.Geonorge.Utilities.Organization
 
         public async Task<Organization> GetOrganizationByName(string name)
         {
-            if (Logger.IsDebugEnabled())
-                Logger.Debug(string.Format("Looking up organization by name: {0}", name));
+            Logger.Debug(string.Format("Looking up organization by name: {0}", name));
             
             HttpClient client = _factory.GetHttpClient();
 
@@ -35,14 +34,12 @@ namespace Kartverket.Geonorge.Utilities.Organization
             {
                 Organization organization = await response.Content.ReadAsAsync<Organization>().ConfigureAwait(false);
                 
-                if (Logger.IsDebugEnabled())
-                    Logger.Debug(string.Format("Organization [{0}] found. [Number={1}], [LogoUrl={2}]", organization.Name, organization.Number, organization.LogoUrl));
+                Logger.Debug(string.Format("Organization [{0}] found. [Number={1}], [LogoUrl={2}]", organization.Name, organization.Number, organization.LogoUrl));
                 
                 return organization;
             }
-
-            if (Logger.IsDebugEnabled())
-                Logger.Debug(string.Format("Organization [{0}] not found. Http response code: {1}", name, response.StatusCode));
+            
+            Logger.Debug(string.Format("Organization [{0}] not found. Http response code: {1}", name, response.StatusCode));
             
             return null;
         }
