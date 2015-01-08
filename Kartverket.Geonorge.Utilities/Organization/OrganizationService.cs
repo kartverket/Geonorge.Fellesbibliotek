@@ -33,8 +33,8 @@ namespace Kartverket.Geonorge.Utilities.Organization
             if (response.IsSuccessStatusCode)
             {
                 Organization organization = await response.Content.ReadAsAsync<Organization>().ConfigureAwait(false);
-                
-                Logger.Debug(string.Format("Organization [{0}] found. [Number={1}], [LogoUrl={2}]", organization.Name, organization.Number, organization.LogoUrl));
+
+                Logger.Debug(string.Format("Organization [{0}] found. [Number={1}], [LogoUrl={2}], [LogoLargeUrl={3}]", organization.Name, organization.Number, organization.LogoUrl, organization.LogoLargeUrl));
                 
                 return organization;
             }
