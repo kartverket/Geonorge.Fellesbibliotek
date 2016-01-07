@@ -34,7 +34,7 @@ namespace Kartverket.Geonorge.Utilities.Organization
             {
                 Organization organization = await response.Content.ReadAsAsync<Organization>().ConfigureAwait(false);
 
-                Logger.Debug(string.Format("Organization [{0}] found. [Number={1}], [LogoUrl={2}], [LogoLargeUrl={3}]", organization.Name, organization.Number, organization.LogoUrl, organization.LogoLargeUrl));
+                Logger.Debug(string.Format("Organization [{0}] found. [Number={1}], [LogoUrl={2}], [LogoLargeUrl={3}], [ShortName={4}]", organization.Name, organization.Number, organization.LogoUrl, organization.LogoLargeUrl, organization.ShortName));
                 
                 return organization;
             }
