@@ -11,7 +11,7 @@
     <description>Utilities for the Geonorge project.</description>
     <copyright>Copyright 2014 Kartverket</copyright>
     <releaseNotes>
-      Add GeoNetworkUtil
+      Add SecurityClaim utility
     </releaseNotes>
   </metadata>
   <files>
