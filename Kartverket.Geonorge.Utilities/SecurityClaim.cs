@@ -1,6 +1,6 @@
 namespace Kartverket.Geonorge.Utilities
 {
-    public static class SecurityClaim
+    public class SecurityClaim
     {
         public static string GetUsername()
         {
