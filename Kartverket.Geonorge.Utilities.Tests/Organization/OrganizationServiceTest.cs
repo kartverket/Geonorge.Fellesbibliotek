@@ -5,11 +5,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Kartverket.Geonorge.Utilities.Organization;
-using NUnit.Framework;
+using Xunit;
 
 namespace Kartverket.Geonorge.Utilities.Tests.Organization
 {
-    internal class OrganizationServiceTest
+    public class OrganizationServiceTest
     {
         public OrganizationServiceTest()
         {
@@ -17,7 +17,7 @@ namespace Kartverket.Geonorge.Utilities.Tests.Organization
 
         }
 
-        [Test]
+        [Fact]
         public void ShouldReturnOrganizationWhenFoundByName()
         {
             const string registryUrl = "http://dummy";
@@ -36,7 +36,7 @@ namespace Kartverket.Geonorge.Utilities.Tests.Organization
             organization.LogoUrl.Should().Be("http://example.com/logo.png");
         }
 
-        [Test]
+        [Fact]
         public void ShouldReturnNullWhenNoContentFound()
         {
             const string registryUrl = "http://dummy";

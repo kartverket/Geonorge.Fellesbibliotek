@@ -1,14 +1,14 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Kartverket.Geonorge.Utilities.Tests
 {
-    class GeoNetworkUtilTest
+    public class GeoNetworkUtilTest
     {
         private const string BaseUrl = "http://www.geonorge.no/geonetwork/";
         private const string Uuid = "4403b8b6-6c10-4570-b402-8633e03a606e";
 
-        [Test]
+        [Fact]
         public void ShouldReturnViewUrl()
         {
             var util = new GeoNetworkUtil(BaseUrl);
@@ -17,7 +17,7 @@ namespace Kartverket.Geonorge.Utilities.Tests
             viewUrl.Should().Be(BaseUrl + "?uuid=" + Uuid);
         }
 
-        [Test]
+        [Fact]
         public void ShouldReturnXmlDownloadUrl()
         {
             var util = new GeoNetworkUtil(BaseUrl);
@@ -26,7 +26,7 @@ namespace Kartverket.Geonorge.Utilities.Tests
             xmlDownloadUrl.Should().Be(BaseUrl + "srv/nor/xml_iso19139?uuid=" + Uuid);
         }
 
-        [Test]
+        [Fact]
         public void ShouldReturnOriginalThumbnailUrlWhenNull()
         {
             var util = new GeoNetworkUtil(BaseUrl);
@@ -35,7 +35,7 @@ namespace Kartverket.Geonorge.Utilities.Tests
             thumbnailUrl.Should().BeNull();
         }
 
-        [Test]
+        [Fact]
         public void ShouldReturnOriginalThumbnailUrlWhenEmpty()
         {
             var util = new GeoNetworkUtil(BaseUrl);
@@ -44,7 +44,7 @@ namespace Kartverket.Geonorge.Utilities.Tests
             thumbnailUrl.Should().Be("");
         }
 
-        [Test]
+        [Fact]
         public void ShouldReturnOriginalThumbnailUrlWhenUrlStartsWithHttp()
         {
             var util = new GeoNetworkUtil(BaseUrl);
@@ -54,7 +54,7 @@ namespace Kartverket.Geonorge.Utilities.Tests
             thumbnailUrl.Should().Be(exampleImage);
         }
 
-        [Test]
+        [Fact]
         public void ShouldReturnThumbnailUrlFromGeoNetworkWhenThumbnailOnlyContainsFilename()
         {
             var util = new GeoNetworkUtil(BaseUrl);
