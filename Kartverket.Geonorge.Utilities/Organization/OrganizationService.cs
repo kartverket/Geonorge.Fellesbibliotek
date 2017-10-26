@@ -25,11 +25,10 @@ namespace Kartverket.Geonorge.Utilities.Organization
             
             HttpClient client = _factory.GetHttpClient();
 
-            client.BaseAddress = new Uri(_registryUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = await client.GetAsync("api/organisasjon/navn/" + name).ConfigureAwait(false);
+            HttpResponseMessage response = await client.GetAsync(_registryUrl + "api/organisasjon/navn/" + name).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
                 Organization organization = await response.Content.ReadAsAsync<Organization>().ConfigureAwait(false);
