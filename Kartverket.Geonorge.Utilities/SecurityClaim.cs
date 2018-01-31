@@ -4,8 +4,8 @@ namespace Kartverket.Geonorge.Utilities
     {
         public class Role
         {
-            public static string MetadataAdmin = "nd.metadata_admin";
-            public static string MetadataEditor = "nd.metadata_editor";
+            public const string MetadataAdmin = "nd.metadata_admin";
+            public const string MetadataEditor = "nd.metadata_editor";
         }
 
         public static string GetUsername()
