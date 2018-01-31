@@ -2,6 +2,12 @@ namespace Kartverket.Geonorge.Utilities
 {
     public class SecurityClaim
     {
+        public class Role
+        {
+            public static string MetadataAdmin = "nd.metadata_admin";
+            public static string MetadataEditor = "nd.metadata_editor";
+        }
+
         public static string GetUsername()
         {
             return GetSecurityClaim("username");
