@@ -54,6 +54,9 @@
     <Compile Include="GeoNetworkUtil.cs" />
     <Compile Include="GeonorgeUrlResolver.cs" />
     <Compile Include="IGeonorgeUrlResolver.cs" />
+    <Compile Include="LogEntry\ILogEntryService.cs" />
+    <Compile Include="LogEntry\LogEntry.cs" />
+    <Compile Include="LogEntry\LogEntryService.cs" />
     <Compile Include="Organization\HttpClientFactory.cs" />
     <Compile Include="Organization\IHttpClientFactory.cs" />
     <Compile Include="Organization\Organization.cs" />
