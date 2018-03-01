@@ -9,6 +9,15 @@ namespace Kartverket.Geonorge.Utilities.LogEntry
     public class LogEntry
     {
         /// <summary>
+        ///     Unique identifier for this entry
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        ///     Date and time for when the event happened.
+        /// </summary>
+        public DateTime DateTime { get; set; }
+        /// <summary>
         ///     The application where the event happened.
         ///     /// Valid values: Metadataeditor, Register, Kartkatalog, Kartografiregister, Symbolregister, Produktark
         /// </summary>

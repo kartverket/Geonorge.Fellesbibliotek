@@ -49,5 +49,32 @@ namespace Kartverket.Geonorge.Utilities.LogEntry
 
             return HttpStatusCode.InternalServerError;
         }
+
+        public async Task<List<LogEntry>> GetEntriesForElement(string elementId, int limitNumberOfEntries = 10)
+        {
+            Logger.Debug(string.Format("Looking up LogEntry by elementId: {0}", elementId));
+
+            HttpClient client = _factory.GetHttpClient();
+
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = await client.GetAsync(_logUrl + "api/logentry/list?elementId=" + elementId + "&limitNumberOfEntries=" + limitNumberOfEntries).ConfigureAwait(false);
+            if (response.IsSuccessStatusCode)
+            {
+                List<LogEntry> logEntries = await response.Content.ReadAsAsync<List<LogEntry>>().ConfigureAwait(false);
+
+                if (logEntries == null)
+                    return null;
+
+                Logger.Debug(string.Format("Query for elementId = [{0}] returned {1} elements", elementId, logEntries.Count));
+
+                return logEntries;
+            }
+
+            Logger.Debug(string.Format("Log entry for elementId [{0}] not found. Http response code: {1}", elementId, response.StatusCode));
+
+            return null;
+        }
     }
 }
