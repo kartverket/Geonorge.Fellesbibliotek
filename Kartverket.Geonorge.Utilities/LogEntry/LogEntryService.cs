@@ -16,12 +16,14 @@ namespace Kartverket.Geonorge.Utilities.LogEntry
         private static readonly ILog Logger = LogProvider.For<LogEntryService>();
 
         private readonly string _logUrl;
+        private readonly string _apiKey;
         private readonly IHttpClientFactory _factory;
 
-        public LogEntryService(string logUrl, IHttpClientFactory factory)
+        public LogEntryService(string logUrl, string apiKey, IHttpClientFactory factory)
         {
             _logUrl = logUrl;
             _factory = factory;
+            _apiKey = apiKey;
         }
         public async Task<HttpStatusCode> AddLogEntry(LogEntry logEntry)
         {
@@ -30,6 +32,7 @@ namespace Kartverket.Geonorge.Utilities.LogEntry
             HttpClient client = _factory.GetHttpClient();
 
             client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Add("apikey", _apiKey);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.BaseAddress = new Uri(_logUrl);
 
@@ -57,6 +60,7 @@ namespace Kartverket.Geonorge.Utilities.LogEntry
             HttpClient client = _factory.GetHttpClient();
 
             client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Add("apikey", _apiKey);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             HttpResponseMessage response = await client.GetAsync(_logUrl + "api/logentry/list?elementId=" + elementId + "&limitNumberOfEntries=" + limitNumberOfEntries).ConfigureAwait(false);

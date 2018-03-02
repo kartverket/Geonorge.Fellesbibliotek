@@ -15,6 +15,7 @@ namespace Kartverket.Geonorge.Utilities.Tests.LogEntry
 {
     public class LogEntryServiceTest
     {
+        string apiKey = "mJ8gt20JXI97c4UiHqjtdomFgn6DQXp4tQMUURcMQLo=";
 
         [Fact]
         public async Task ShouldReturnSuccessfullyWhenAddingToLog()
@@ -32,7 +33,7 @@ namespace Kartverket.Geonorge.Utilities.Tests.LogEntry
              @"{Application:""Register"", User:""demobruker"", Description:""testing logging"",ElementId : ""83f9cca1-8cf3-41c7-b55b-c80bbcca3dfa"" }";
             var httpClient = CreateHttpClientFactory(HttpStatusCode.NoContent, content);
 
-            LogEntryService service = new LogEntryService(logUrl, httpClient);
+            LogEntryService service = new LogEntryService(logUrl, apiKey, httpClient);
             HttpStatusCode actualStatusCode = await service.AddLogEntry(log);
             var expectedStatusCode = HttpStatusCode.NoContent;
             Assert.Equal(expectedStatusCode, actualStatusCode);
@@ -53,7 +54,7 @@ namespace Kartverket.Geonorge.Utilities.Tests.LogEntry
         //        ElementId = "83f9cca1-8cf3-41c7-b55b-c80bbcca3dfa"
         //    };
 
-        //    LogEntryService service = new LogEntryService(logUrl, new HttpClientFactory());
+        //    LogEntryService service = new LogEntryService(logUrl, apiKey, new HttpClientFactory());
         //    HttpStatusCode actualStatusCode = await service.AddLogEntry(log);
         //    var expectedStatusCode = HttpStatusCode.NoContent;
         //    Assert.Equal(expectedStatusCode, actualStatusCode);
@@ -90,7 +91,7 @@ namespace Kartverket.Geonorge.Utilities.Tests.LogEntry
         //    string logUrl = "http://api.dev.geonorge.no/endringslogg/";
         //    string elementId = "83f9cca1-8cf3-41c7-b55b-c80bbcca3dfa";
 
-        //    LogEntryService service = new LogEntryService(logUrl, new HttpClientFactory());
+        //    LogEntryService service = new LogEntryService(logUrl, apiKey, new HttpClientFactory());
         //    List<Utilities.LogEntry.LogEntry> logs = await service.GetEntriesForElement(elementId, 1);
 
         //    logs.Should().HaveCount(1);
