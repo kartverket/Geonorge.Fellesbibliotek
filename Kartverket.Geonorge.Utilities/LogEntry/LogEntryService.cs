@@ -35,9 +35,8 @@ namespace Kartverket.Geonorge.Utilities.LogEntry
             client.DefaultRequestHeaders.Remove("apikey");
             client.DefaultRequestHeaders.Add("apikey", _apiKey);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.BaseAddress = new Uri(_logUrl);
 
-            HttpResponseMessage response = await client.PostAsJsonAsync("api/logentry/add", logEntry).ConfigureAwait(false);
+            HttpResponseMessage response = await client.PostAsJsonAsync(_logUrl + "api/logentry/add", logEntry).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
                 await response.Content.ReadAsAsync<LogEntry>().ConfigureAwait(false);

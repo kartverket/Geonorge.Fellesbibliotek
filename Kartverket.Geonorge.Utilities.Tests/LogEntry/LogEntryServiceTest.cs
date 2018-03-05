@@ -59,6 +59,11 @@ namespace Kartverket.Geonorge.Utilities.Tests.LogEntry
         //    var expectedStatusCode = HttpStatusCode.NoContent;
         //    Assert.Equal(expectedStatusCode, actualStatusCode);
 
+        //    //LogEntryService service2 = new LogEntryService(logUrl, apiKey, new HttpClientFactory());
+        //    //actualStatusCode = await service.AddLogEntry(log);
+        //    //var expectedStatusCode2 = HttpStatusCode.NoContent;
+        //    //Assert.Equal(expectedStatusCode2, actualStatusCode);
+
         //}
 
 
