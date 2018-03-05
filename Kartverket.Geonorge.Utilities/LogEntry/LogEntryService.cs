@@ -32,6 +32,7 @@ namespace Kartverket.Geonorge.Utilities.LogEntry
             HttpClient client = _factory.GetHttpClient();
 
             client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Remove("apikey");
             client.DefaultRequestHeaders.Add("apikey", _apiKey);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.BaseAddress = new Uri(_logUrl);
@@ -60,6 +61,7 @@ namespace Kartverket.Geonorge.Utilities.LogEntry
             HttpClient client = _factory.GetHttpClient();
 
             client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Remove("apikey");
             client.DefaultRequestHeaders.Add("apikey", _apiKey);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
