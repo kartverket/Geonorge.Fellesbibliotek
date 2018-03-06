@@ -37,5 +37,22 @@ namespace Kartverket.Geonorge.Utilities.LogEntry
         ///     The identificator of the element that has changed, e.g. the metadata uuid
         /// </summary>
         public string ElementId { get; set; }
+
+        /// <summary>
+        ///     The title of the element that has changed
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        ///     Type of operation: Added, Modified, Deleted
+        /// </summary>
+        public string Operation { get; set; }
+    }
+
+    public static class Operation
+    {        
+        public const string Added = "Added";
+        public const string Modified = "Modified";
+        public const string Deleted = "Deleted";
     }
 }

@@ -15,7 +15,7 @@ namespace Kartverket.Geonorge.Utilities.Tests.LogEntry
 {
     public class LogEntryServiceTest
     {
-        string apiKey = "mJ8gt20JXI97c4UiHqjtdomFgn6DQXp4tQMUURcMQLo=";
+        string apiKey = "CcjG1FHm1rHZjdwg2ofnYMwUprAujEGvpgIsyBXAGoM=";
 
         [Fact]
         public async Task ShouldReturnSuccessfullyWhenAddingToLog()
@@ -51,7 +51,9 @@ namespace Kartverket.Geonorge.Utilities.Tests.LogEntry
         //        Application = "Register",
         //        User = "demobruker",
         //        Description = "testing logging",
-        //        ElementId = "83f9cca1-8cf3-41c7-b55b-c80bbcca3dfa"
+        //        ElementId = "83f9cca1-8cf3-41c7-b55b-c80bbcca3dfa",
+        //        Operation = "Modified",
+        //        Title = "Metadata test"
         //    };
 
         //    LogEntryService service = new LogEntryService(logUrl, apiKey, new HttpClientFactory());

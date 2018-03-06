@@ -41,14 +41,14 @@ namespace Kartverket.Geonorge.Utilities.LogEntry
             {
                 await response.Content.ReadAsAsync<LogEntry>().ConfigureAwait(false);
 
-                Logger.Debug(string.Format("LogEntry added. [Application={0}], [User={1}], [Description={2}], [ElementId={3}]"
-                    , logEntry.Application, logEntry.User, logEntry.Description, logEntry.ElementId));
+                Logger.Debug(string.Format("LogEntry added. [Application={0}], [User={1}], [Description={2}], [ElementId={3}] , [Title={4}], [Operation={5}]"
+                    , logEntry.Application, logEntry.User, logEntry.Description, logEntry.ElementId, logEntry.Title, logEntry.Operation));
 
                 return HttpStatusCode.NoContent;
             }
 
-            Logger.Error(string.Format("LogEntry not added. [Application={0}], [User={1}], [Description={2}], [ElementId={3}]"
-                    , logEntry.Application, logEntry.User, logEntry.Description, logEntry.ElementId));
+            Logger.Error(string.Format("LogEntry not added. [Application={0}], [User={1}], [Description={2}], [ElementId={3}], [Title={4}], [Operation={5}]"
+                    , logEntry.Application, logEntry.User, logEntry.Description, logEntry.ElementId, logEntry.Title, logEntry.Operation));
 
             return HttpStatusCode.InternalServerError;
         }
