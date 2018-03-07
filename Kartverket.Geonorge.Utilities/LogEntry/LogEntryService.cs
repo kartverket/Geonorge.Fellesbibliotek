@@ -81,5 +81,34 @@ namespace Kartverket.Geonorge.Utilities.LogEntry
 
             return null;
         }
+
+        public async Task<List<LogEntry>> GetEntries(int limitNumberOfEntries = 50)
+        {
+            Logger.Debug(string.Format("Looking up LogEntry by latest."));
+
+            HttpClient client = _factory.GetHttpClient();
+
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Remove("apikey");
+            client.DefaultRequestHeaders.Add("apikey", _apiKey);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = await client.GetAsync(_logUrl + "api/logentry/list-latest?limitNumberOfEntries=" + limitNumberOfEntries).ConfigureAwait(false);
+            if (response.IsSuccessStatusCode)
+            {
+                List<LogEntry> logEntries = await response.Content.ReadAsAsync<List<LogEntry>>().ConfigureAwait(false);
+
+                if (logEntries == null)
+                    return null;
+
+                Logger.Debug(string.Format("Query for latest elements returned {0} elements", logEntries.Count));
+
+                return logEntries;
+            }
+
+            Logger.Debug(string.Format("Log for latest entries not found. Http response code: {0}", response.StatusCode));
+
+            return null;
+        }
     }
 }
