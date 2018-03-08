@@ -52,8 +52,7 @@ namespace Kartverket.Geonorge.Utilities.Tests.LogEntry
         //        User = "demobruker",
         //        Description = "testing logging",
         //        ElementId = "83f9cca1-8cf3-41c7-b55b-c80bbcca3dfa",
-        //        Operation = "Modified",
-        //        Title = "Metadata test"
+        //        Operation = "Modified"
         //    };
 
         //    LogEntryService service = new LogEntryService(logUrl, apiKey, new HttpClientFactory());
