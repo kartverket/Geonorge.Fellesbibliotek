@@ -10,29 +10,3 @@ spec:
   lifecycle: "production"
   owner: "datadeling_og_distribusjon"
   system: "geonorge"
----
-apiVersion: "backstage.io/v1alpha1"
-kind: "Group"
-metadata:
-  name: "security_champion_Geonorge.Fellesbibliotek"
-  title: "Security Champion Geonorge.Fellesbibliotek"
-spec:
-  type: "security_champion"
-  parent: "land_security_champions"
-  members:
-  - "dagolav"
-  children:
-  - "resource:Geonorge.Fellesbibliotek"
----
-apiVersion: "backstage.io/v1alpha1"
-kind: "Resource"
-metadata:
-  name: "Geonorge.Fellesbibliotek"
-  links:
-  - url: "https://github.com/kartverket/Geonorge.Fellesbibliotek"
-    title: "Geonorge.Fellesbibliotek på GitHub"
-spec:
-  type: "repo"
-  owner: "security_champion_Geonorge.Fellesbibliotek"
-  dependencyOf:
-  - "component:Geonorge.Fellesbibliotek"
