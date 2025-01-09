@@ -23,7 +23,7 @@ namespace Kartverket.Geonorge.Utilities.Tests
             var util = new GeoNetworkUtil(BaseUrl);
             string xmlDownloadUrl = util.GetXmlDownloadUrl(Uuid);
 
-            xmlDownloadUrl.Should().Be(BaseUrl + "srv/nor/xml_iso19139?uuid=" + Uuid);
+            xmlDownloadUrl.Should().Be(BaseUrl + "srv/nor/csw?service=CSW&request=GetRecordById&version=2.0.2&outputSchema=http://www.isotc211.org/2005/gmd&elementSetName=full&id=" + Uuid);
         }
 
         [Fact]

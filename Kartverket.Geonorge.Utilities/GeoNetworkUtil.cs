@@ -16,7 +16,7 @@
 
         public string GetXmlDownloadUrl(string uuid)
         {
-            return string.Format("{0}srv/nor/xml_iso19139?uuid={1}", _baseUrl, uuid);
+            return string.Format("{0}srv/nor/csw?service=CSW&request=GetRecordById&version=2.0.2&outputSchema=http://www.isotc211.org/2005/gmd&elementSetName=full&id={1}", _baseUrl, uuid);
         }
 
         public string GetThumbnailUrl(string uuid, string thumbnail)
